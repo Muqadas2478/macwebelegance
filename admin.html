@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | Muqadas</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #1A1A2E; color: #fff; font-family: 'Inter', sans-serif; padding: 40px; }
+    #loginBox { max-width: 350px; margin: 100px auto; text-align: center; }
+    #loginBox input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; }
+    #loginBox button, .logout-btn { padding: 12px 20px; background: #7C6FEF; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+    #messagesPanel { display: none; max-width: 800px; margin: 0 auto; }
+    .msg-card { background: #2A2A44; padding: 16px; border-radius: 10px; margin-bottom: 14px; }
+    .msg-card h3 { color: #7C6FEF; margin: 0 0 6px; }
+    .msg-card p { margin: 4px 0; }
+    .msg-date { font-size: 12px; color: #999; }
+  </style>
+</head>
+<body>
+
+  <div id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="password" id="adminPassword" placeholder="Enter password">
+    <br>
+    <button onclick="login()">Login</button>
+    <p id="loginError" style="color:#e74c3c;"></p>
+  </div>
+
+  <div id="messagesPanel">
+    <h2>Contact Messages</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+    <div id="messagesList" style="margin-top:20px;"></div>
+  </div>
+
+  <script>
+    async function login() {
+      const password = document.getElementById('adminPassword').value;
+      const res = await fetch('http://localhost:5000/api/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        sessionStorage.setItem('adminLoggedIn', 'true');
+        showMessages();
+      } else {
+        document.getElementById('loginError').textContent = "Wrong password";
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('adminLoggedIn');
+      document.getElementById('messagesPanel').style.display = 'none';
+      document.getElementById('loginBox').style.display = 'block';
+    }
+
+    async function showMessages() {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('messagesPanel').style.display = 'block';
+
+      const res = await fetch('http://localhost:5000/api/messages');
+      const messages = await res.json();
+      const list = document.getElementById('messagesList');
+      list.innerHTML = '';
+
+      if (messages.length === 0) {
+        list.innerHTML = '<p>No messages yet.</p>';
+        return;
+      }
+
+      messages.forEach(msg => {
+        const card = document.createElement('div');
+        card.className = 'msg-card';
+        card.innerHTML = `
+          <h3>${msg.name}</h3>
+          <p>${msg.email}</p>
+          <p>${msg.message}</p>
+          <p class="msg-date">${new Date(msg.date).toLocaleString()}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+      showMessages();
+    }
+  </script>
+
+</body>
+</html>
