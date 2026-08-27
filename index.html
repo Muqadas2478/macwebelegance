@@ -3,165 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muqadas | Web & Design Services</title>
-  <link rel="stylesheet"c href="style.css">
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5D5H0J96BT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5D5H0J96BT');
-</script>
-
-
-
+  <title>Admin Panel | Messages</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-   <div class="logo">MAC<span class="logo-accent">Web</span>Elegance</div>
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
-<section class="hero" id="hero">
-  <div class="hero-grid">
-    <div class="hero-content">
-      <p class="hero-tagline">FULL STACK DEVELOPER · UI/UX DESIGNER</p>
-      <h1 class="hero-title">I BUILD<br><span class="highlight">DIGITAL EXPERIENCES</span></h1>
-      <p class="hero-sub">I turn bold ideas into seamless digital experiences — where clean code meets thoughtful design.</p>
-
-      <div class="hero-badges">
-        <span class="badge">💻 Web Development</span>
-        <span class="badge">🎨 UI/UX Design</span>
-        <span class="badge">🛍️ Shopify Setup</span>
-      </div>
-
-      <a href="#contact" class="btn hero-btn">Get in Touch</a>
+  <div style="max-width: 600px; margin: 50px auto; padding: 20px; font-family: sans-serif;">
+    
+    <!-- Login Box -->
+    <div id="loginBox">
+      <h2>Admin Login</h2>
+      <input type="password" id="adminPass" placeholder="Enter Admin Password" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;">
+      <button onclick="checkPassword()" class="btn" style="padding: 10px 20px; cursor: pointer;">Login</button>
+      <p id="loginError" style="color: red; margin-top: 10px;"></p>
     </div>
 
-    <div class="hero-visual">
-      <div class="mockup-browser">
-        <div class="mockup-topbar">
-          <span class="dot red"></span>
-          <span class="dot yellow"></span>
-          <span class="dot green"></span>
-        </div>
-        <div class="mockup-body">
-          <div class="mockup-line short glow"></div>
-          <div class="mockup-line long"></div>
-          <div class="mockup-line medium"></div>
-          <div class="mockup-card"></div>
-          <div class="mockup-line long"></div>
-          <div class="mockup-line short"></div>
-        </div>
-      </div>
+    <!-- Messages Panel -->
+    <div id="messagesPanel" style="display: none;">
+      <h2>Client Messages</h2>
+      <button onclick="logout()" style="margin-bottom: 20px; padding: 5px 10px; cursor: pointer;">Logout</button>
+      <div id="messagesList">Loading messages...</div>
     </div>
+
   </div>
-</section>
 
-  <!-- Services Section -->
-  <section class="services" id="services">
-    <h2>My Services</h2>
-    <div class="services-container">
-      <div class="service-card">
-  <h3>Web Development</h3>
-  <p>Modern, responsive websites built with clean code — fast, mobile-friendly, and tailored to your business needs.</p>
-</div>
-<div class="service-card">
-  <h3>UI/UX Design</h3>
-  <p>User-focused designs with wireframes, prototypes, and polished interfaces that make your product easy to use.</p>
-</div>
-<div class="service-card">
-  <h3>Shopify Store Setup</h3>
-  <p>Custom Shopify stores built end-to-end — product pages, payment setup, and a professional store ready to sell.</p>
-</div>
-    </div>
-  </section>
+  <script>
+    function checkPassword() {
+      const inputPass = document.getElementById('adminPass').value;
+      const errorMsg = document.getElementById('loginError');
 
-  <!-- How It Works Section -->
-  <section class="how-it-works" id="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps-container">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>Share Your Idea</h3>
-        <p>Tell me what you need — a website, an app design, or a redesign. We discuss your goals and requirements.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>Design & Build</h3>
-        <p>I create wireframes/designs, get your feedback, then build the final product with clean, modern code.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>Launch & Support</h3>
-        <p>Your project goes live! I also provide revisions and support to make sure everything works perfectly.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <h2>Get In Touch</h2>
-    <p>Have a project in mind? Reach out — I'd love to help!</p>
-    <form id="contactForm" class="contact-form">
-  <input type="text" id="name" name="name" placeholder="Your Name" required>
-  <input type="email" id="email" name="email" placeholder="Your Email" required>
-  <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-  <button type="submit" class="btn">Send Message</button>
-  <p id="formStatus"></p>
-</form>
-    <div class="contact-links">
-      <a href="https://wa.me/923105886892" target="_blank" class="contact-btn whatsapp">WhatsApp</a>
-      <a href="https://instagram.com/muqadaschohan375" target="_blank" class="contact-btn instagram">Instagram</a>
-      <a href="https://facebook.com/MACchohan" target="_blank" class="contact-btn facebook">Facebook</a>
-      <a href="mailto:muqadasarif6677@gmail.com" class="contact-btn email">Email</a>
-    </div>
-  </section>
-<script>
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-
-  contactForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    formStatus.textContent = "Sending...";
-    formStatus.className = "";
-
-    try {
-     const response = await fetch('https://macwebelegance.vercel.app/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
-        formStatus.className = "success";
-        contactForm.reset();
+      // Aapka password Mayo2468 set hai
+      if (inputPass === 'Mayo2468') {
+        errorMsg.textContent = "";
+        showMessages();
       } else {
-        formStatus.textContent = "Something went wrong. Please try again.";
-        formStatus.className = "error";
+        errorMsg.textContent = "Incorrect password. Please try again.";
       }
-    } catch (err) {
-      formStatus.textContent = "Could not connect to server. Please try again later.";
-      formStatus.className = "error";
     }
-  });
-</script>
+
+    async function showMessages() {
+      document.getElementById('loginBox').style.display = 'none';
+      document.getElementById('messagesPanel').style.display = 'block';
+
+      try {
+        const res = await fetch('https://macwebelegance.vercel.app/api/messages');
+        const messages = await res.json();
+        const list = document.getElementById('messagesList');
+        list.innerHTML = '';
+
+        if (!messages || messages.length === 0) {
+          list.innerHTML = '<p>No messages yet.</p>';
+          return;
+        }
+
+        messages.forEach(msg => {
+          const card = document.createElement('div');
+          card.style.cssText = 'border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 8px; background: #f9f9f9; color: #333;';
+          card.innerHTML = `
+            <h3 style="margin: 0 0 5px 0;">${msg.name}</h3>
+            <p style="margin: 0 0 5px 0;"><strong>Email:</strong> ${msg.email}</p>
+            <p style="margin: 0 0 5px 0;"><strong>Message:</strong> ${msg.message}</p>
+            <small style="color: #666;">${new Date(msg.date || Date.now()).toLocaleString()}</small>
+          `;
+          list.appendChild(card);
+        });
+      } catch (err) {
+        document.getElementById('messagesList').innerHTML = '<p style="color: red;">Could not load messages from server.</p>';
+      }
+    }
+
+    function logout() {
+      document.getElementById('loginBox').style.display = 'block';
+      document.getElementById('messagesPanel').style.display = 'none';
+      document.getElementById('adminPass').value = '';
+    }
+  </script>
 </body>
 </html>
