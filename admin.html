@@ -59,7 +59,7 @@
       document.getElementById('loginBox').style.display = 'none';
       document.getElementById('messagesPanel').style.display = 'block';
 
-      const res = await fetch('http://localhost:5000/api/messages');
+     const res = await fetch('https://macwebelegance.vercel.app/api/messages');
       const messages = await res.json();
       const list = document.getElementById('messagesList');
       list.innerHTML = '';
