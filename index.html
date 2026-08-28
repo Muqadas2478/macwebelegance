@@ -101,13 +101,14 @@
   <section class="contact" id="contact">
     <h2>Get In Touch</h2>
     <p>Have a project in mind? Reach out — I'd love to help!</p>
-    <form id="contactForm" class="contact-form">
-  <input type="text" id="name" name="name" placeholder="Your Name" required>
-  <input type="email" id="email" name="email" placeholder="Your Email" required>
-  <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-  <button type="submit" class="btn">Send Message</button>
-  <p id="formStatus"></p>
-</form>
+    <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="fe492854-3f4a-482a-ae92-aaa3d8da13a3">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+        <p id="formStatus"></p>
+    </form>
     <div class="contact-links">
       <a href="https://wa.me/923105886892" target="_blank" class="contact-btn whatsapp">WhatsApp</a>
       <a href="https://instagram.com/muqadaschohan375" target="_blank" class="contact-btn instagram">Instagram</a>
@@ -115,42 +116,6 @@
       <a href="mailto:muqadasarif6677@gmail.com" class="contact-btn email">Email</a>
     </div>
   </section>
-<script>
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
 
-  contactForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    formStatus.textContent = "Sending...";
-    formStatus.className = "";
-
-    try {
-     const response = await fetch('https://macwebelegance.vercel.app/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
-        formStatus.className = "success";
-        contactForm.reset();
-      } else {
-        formStatus.textContent = "Something went wrong. Please try again.";
-        formStatus.className = "error";
-      }
-    } catch (err) {
-      formStatus.textContent = "Could not connect to server. Please try again later.";
-      formStatus.className = "error";
-    }
-  });
-</script>
 </body>
 </html>
